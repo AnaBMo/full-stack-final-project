@@ -15,15 +15,16 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/', productRoutes);
+
 /*
 app.use('/', authRoutes);
-app.use('/', productRoutes);
 app.use('/', recipeRoutes);
 */
 
 dbConnection();
 
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
 
 module.exports = app;
