@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', productRoutes);
+app.use('/', authRoutes);
 
 /*
-app.use('/', authRoutes);
 app.use('/', recipeRoutes);
 */
 
