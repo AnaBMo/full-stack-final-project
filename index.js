@@ -17,13 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', productRoutes);
 app.use('/', authRoutes);
-
-/*
 app.use('/', recipeRoutes);
-*/
 
 dbConnection();
-
 
 app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
 

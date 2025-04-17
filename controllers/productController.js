@@ -8,7 +8,7 @@ const productController = {
       res.status(200).json(products);
     } catch (error) {
       console.error('❌ Error getting products:', error);
-      res.status(500).json({ error: 'Error getting products' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   },
 
@@ -22,7 +22,7 @@ const productController = {
       res.status(200).json(product);
     } catch (error) {
       console.error('❌ Error getting the product:', error);
-      res.status(500).json({ error: 'Error getting the product' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   },
 
@@ -33,7 +33,7 @@ const productController = {
       res.status(201).json(newProduct);
     } catch (error) {
       console.error('❌ Error creating product:', error);
-      res.status(500).json({ error: 'Error creating product' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   },
 
@@ -51,7 +51,7 @@ const productController = {
       res.status(200).json(updatedProduct);
     } catch (error) {
       console.error('❌ Error updating the product:', error);
-      res.status(500).json({ error: 'Error updating the product' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   },
 
@@ -65,7 +65,7 @@ const productController = {
       res.status(200).json({ message: 'Product successfully removed' });
     } catch (error) {
       console.error('❌ Error deleting product:', error);
-      res.status(500).json({ error: 'Error deleting product' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   },
 
@@ -92,7 +92,7 @@ const productController = {
       res.status(200).json(expiringProducts);
     } catch (error) {
       console.error('❌ Error getting products close to expiration:', error);
-      res.status(500).json({ error: 'Error getting products close to expiration:' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   },
 
@@ -110,7 +110,7 @@ const productController = {
       res.status(200).json(expiredProducts);
     } catch (error) {
       console.error('❌ Error getting expired products:', error);
-      res.status(500).json({ error: 'Error getting expired products:' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   }
 };

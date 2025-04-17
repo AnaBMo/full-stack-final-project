@@ -15,16 +15,3 @@ router.put('/products/:productId', productController.updateProduct);
 router.delete('/products/:productId', productController.removeProduct);
 
 module.exports = router;
-
-/*
-
-    Método	  |       Ruta	             |        Controlador
-GET	          |  /products	             |     getAllProducts
-GET           |  /products/expiring      |     getExpiringSoonProduct
-GET           |  /products/expired	     |     getExpiredProduct
-GET           |  /products/:productId	 |     getProductById
-POST          |  /products	             |     createProduct
-PUT           |  /products/:productId	 |     updateProduct
-DELETE        |  /products/:productId	 |     removeProduct
-
-*/
