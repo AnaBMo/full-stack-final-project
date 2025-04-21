@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const cookieParser = require('cookie-parser'); // manejar el token req.cookies.token
 require('dotenv').config(); 
 
@@ -10,6 +11,8 @@ const recipeRoutes = require("./routes/recipeRoutes")
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 app.use(cookieParser()); 
 app.use(express.json());
