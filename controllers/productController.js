@@ -76,9 +76,6 @@ const productController = {
       const sevenDaysFromNow = new Date();
       sevenDaysFromNow.setDate(today.getDate() + 7);
 
-      console.log("🕓 Hoy:", today.toISOString());
-      console.log("🗓️ En 7 días:", sevenDaysFromNow.toISOString());
-
       const expiringProducts = await productModel.find({
         expirationDate: {
             // usamos operadores MongoDB porque el filtrado con JS puro afecta al rendimiento
@@ -86,8 +83,6 @@ const productController = {
             $lte: sevenDaysFromNow // "less than or equal" 
         }
       });
-
-      console.log("🔍 Productos próximos a caducar:", expiringProducts.length);
 
       res.status(200).json(expiringProducts);
     } catch (error) {
@@ -104,8 +99,6 @@ const productController = {
       const expiredProducts = await productModel.find({
         expirationDate: { $lt: today } // operador MongoDB "less than"
       });
-
-      console.log("⚠️ Productos caducados:", expiredProducts.length);
       
       res.status(200).json(expiredProducts);
     } catch (error) {
