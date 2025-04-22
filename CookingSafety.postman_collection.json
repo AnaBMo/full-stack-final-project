@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "553ee2a0-6ed3-4f76-9e09-304714590bcf",
+		"name": "CookingSafety",
+		"description": "StartFragment\n\n## 🍳 **Cooking Safely – API RESTful**\n\n**Cooking Safely** es una API RESTful para gestionar productos alimentarios, con foco en la trazabilidad, control de stock y seguridad por fechas de caducidad.\n\nEsta colección incluye todas las rutas relacionadas con la gestión de productos, autenticación y elaboración de recetas. Los datos se almacenan en MongoDB.\n\n---\n\n### 📦 **Productos**\n\nActualmente, todos los endpoints de `/products` son públicos y **no requieren autenticación**.\n\n| Método | Ruta | Descripción |\n| --- | --- | --- |\n| GET | `/products` | Obtiene todos los productos disponibles. |\n| GET | `/products/:productId` | Obtiene un producto específico por su ID. |\n| POST | `/products` | Crea un nuevo producto. Requiere datos como nombre, fechas, lote, etc. |\n| PUT | `/products/:productId` | Actualiza los datos de un producto existente. |\n| DELETE | `/products/:productId` | Elimina un producto por su ID. |\n| GET | `/products/expiring-soon` | Devuelve productos que caducan en los próximos 7 días. |\n| GET | `/products/expired` | Devuelve productos que ya han caducado. |\n\n---\n\n### 🔐 **Autenticación (Firebase)**\n\nEstos endpoints gestionan el registro, login y logout de usuarios a través de Firebase Authentication.\n\nSon necesarios para acceder a rutas protegidas como `/recipes`.\n\n| Método | Ruta | Descripción |\n| --- | --- | --- |\n| POST | `/register` | Registra un nuevo usuario en Firebase Auth. Requiere email y contraseña. |\n| POST | `/login` | Recibe un `idToken` desde el frontend, lo valida y guarda una cookie httpOnly. |\n| POST | `/logout` | Cierra la sesión eliminando la cookie del token. |\n\n---\n\n### 🍳 **Recetas**\n\nRequieren autenticación mediante token (cookie).\n\n| Método | Ruta | Descripción |\n| --- | --- | --- |\n| POST | `/recipes` | Crea una nueva receta con productos como ingredientes. |\n| GET | `/recipes` | Devuelve todas las recetas almacenadas. |\n| GET | `/recipes/:recipeId` | Devuelve una receta específica por ID. |\n| GET | `/recipes/date/:date` | Devuelve las recetas elaboradas en una fecha concreta (formato YYYY-MM-DD). |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40947339"
+	},
+	"item": [
+		{
+			"name": "getAllProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/products",
+				"description": "This response is an array of objects, each representing a stored product. Each object contains detailed information about an item received or in inventory."
+			},
+			"response": []
+		},
+		{
+			"name": "getExpiringSoonProduct",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/products/expiring",
+				"description": "This response is an array of objects, each representing a product that is nearing its expiration date. Each object includes detailed information to help track and manage soon-to-expire inventory."
+			},
+			"response": []
+		},
+		{
+			"name": "getExpiredProduct",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/products/expired",
+				"description": "This response is an array of objects, each representing an expired product. Each object includes detailed information to support tracking and management of expired inventory items."
+			},
+			"response": []
+		},
+		{
+			"name": "getProductById",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/products/67ff977425008f363fa12558",
+				"description": "This response returns a single product object, identified by the ID provided in the endpoint. The object contains detailed information about the selected inventory item."
+			},
+			"response": []
+		},
+		{
+			"name": "createProduct",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sal OnRender borrar\",\r\n  \"entryDate\": \"2025-04-22\",\r\n  \"expirationDate\": \"2025-06-22\",\r\n  \"batchNumber\": \"L12357\",\r\n  \"deliveryNoteNumber\": \"ALB6797\",\r\n  \"description\": \"Saco 10Kg. Conservar en lugar fresco y seco.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://full-stack-final-project-develop.onrender.com/products",
+				"description": "This request allows you to create a new product by sending the required data in the request body. The response returns the newly created product object with all its details and a unique identifier."
+			},
+			"response": []
+		},
+		{
+			"name": "updateProduct",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"_id\": \"67ff977425008f363fa12558\",\r\n  \"name\": \"Maíz UPDATED Render ok\",\r\n  \"entryDate\": \"2025-04-16T00:00:00.000Z\",\r\n  \"expirationDate\": \"2025-04-27T00:00:00.000Z\",\r\n  \"batchNumber\": \"L12345\",\r\n  \"deliveryNoteNumber\": \"ALB6789\",\r\n  \"description\": \"Saco 10Kg. Conservar en lugar fresco y seco.\",\r\n  \"createdAt\": \"2025-04-16T11:41:40.294Z\",\r\n  \"updatedAt\": \"2025-04-16T12:09:06.619Z\",\r\n  \"__v\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://full-stack-final-project-develop.onrender.com/products/67ff977425008f363fa12558",
+				"description": "This request updates the product identified by the ID in the endpoint. The updated data must be provided in the request body. The response returns the modified product object with the new values."
+			},
+			"response": []
+		},
+		{
+			"name": "removeProduct",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/products/6807cab265db9aaa456c7ae3",
+				"description": "This request deletes the product identified by the ID provided in the endpoint. The response confirms the deletion or returns information about the removed product."
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"onrender@render.com\",\r\n  \"password\": \"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://full-stack-final-project-develop.onrender.com/register",
+				"description": "This request registers a new user using Firebase Authentication. The request body must include the user's email and password. The response confirms successful registration and returns the unique user ID (`uid`) generated by Firebase. No authentication token is returned in this response."
+			},
+			"response": []
+		},
+		{
+			"name": "getAllRecipes",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/recipes",
+				"description": "This response is an array of objects, each representing a recipe. Each recipe contains metadata (name, preparation and expiration dates, creator), as well as a list of ingredients. Each ingredient includes a reference to a product with detailed information (name, batch number, storage description, etc.)."
+			},
+			"response": []
+		},
+		{
+			"name": "createRecipe",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Receta ONRENDER\",\r\n  \"ingredients\": [\r\n    { \"product\": \"67ff977425008f363fa12558\" },\r\n    { \"product\": \"67ff97cb25008f363fa1255a\" },\r\n    { \"product\": \"67ff9bb425008f363fa1255d\" }\r\n  ],\r\n  \"preparationDate\": \"2025-04-22\",\r\n  \"expirationDate\": \"2025-04-25\",\r\n  \"createdBy\": \"test-user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://full-stack-final-project-develop.onrender.com/recipes",
+				"description": "This request creates a new recipe. The request body must include the recipe name, preparation and expiration dates, and a list of ingredients (each linked to a product). The response returns the newly created recipe object, including all associated data and a unique recipe ID."
+			},
+			"response": []
+		},
+		{
+			"name": "filterByPreparationDate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/recipes/date/2025-04-22",
+				"description": "This request returns an array of recipe objects filtered by preparation date. The date is provided directly in the endpoint URL. The response includes all recipes prepared on that specific date, with full details including ingredients, preparation/expiration dates, and creator information."
+			},
+			"response": []
+		},
+		{
+			"name": "getRecipeById",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://full-stack-final-project-develop.onrender.com/recipes/6807c9db65db9aaa456c7ab5",
+				"description": "This request returns a single recipe object, identified by the recipe ID provided in the endpoint URL. The response includes all details of the recipe, including its name, preparation and expiration dates, ingredients (with product data), and creator information."
+			},
+			"response": []
+		}
+	]
+}

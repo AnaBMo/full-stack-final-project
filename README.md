@@ -10,7 +10,7 @@ Este proyecto forma parte del sistema "Cooking Safely", diseñado para gestionar
 - **MongoDB Atlas + Mongoose**
 - **Firebase Admin SDK** para autenticación
 - **dotenv** para variables de entorno
-- **Postman** para pruebas de API (https://documenter.getpostman.com/view/40947339/2sB2cd3ct9#512bdeec-7a75-46e6-a196-0cb59a563ede)
+- **Postman** para pruebas de API (https://documenter.getpostman.com/view/40947339/2sB2cd3ct9)
 
 ---
 
