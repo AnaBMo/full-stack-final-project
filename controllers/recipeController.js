@@ -3,6 +3,8 @@ const recipeModel = require("../models/Recipe");
 const recipeController = {
   // 1. Crear una receta
   async createRecipe(req, res) {
+    console.log("🟢 Datos recibidos:", req.body);
+
     try {
       const { name, ingredients, preparationDate, expirationDate } = req.body;
 
@@ -12,16 +14,16 @@ const recipeController = {
 
       const newRecipe = await recipeModel.create({
         name,
-        ingredients,
+        ingredients: ingredients.map(id => ({ product: id })),
         preparationDate,
         expirationDate,
-        createdBy: req.body.createdBy || "test-user"
+        createdBy: req.user?.uid || req.body.createdBy || "test-user"
       });
 
       res.status(201).json(newRecipe);
     } catch (error) {
-      console.error("❌ Error creating recipe:", error);
-      res.status(500).json({ error: "Internal server error" });
+      console.error("❌ Error creating recipe:", error.message);
+      res.status(500).json({ error: error.message });
     }
   },
 
