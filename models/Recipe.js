@@ -29,6 +29,10 @@ const recipeSchema = new mongoose.Schema({
   createdBy: {
     type: String, // UID del usuario de Firebase
     required: true
+  },
+  createdByEmail: {
+    type: String, 
+    required: true
   }
 }, { timestamps: true });
 
