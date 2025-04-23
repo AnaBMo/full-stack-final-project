@@ -17,7 +17,8 @@ const recipeController = {
         ingredients: ingredients.map(id => ({ product: id })),
         preparationDate,
         expirationDate,
-        createdBy: req.user?.uid || req.body.createdBy || "test-user"
+        createdBy: req.user?.uid || req.body.createdBy || "test-user",
+        createdByEmail: req.user?.email || req.body.createdByEmail || "test-email"
       });
 
       res.status(201).json(newRecipe);
