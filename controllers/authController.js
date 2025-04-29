@@ -38,7 +38,7 @@ const login = async (req, res) => {
 
     res.cookie('token', idToken, {
       httpOnly: true,
-      secure: false, //! cambiar a 'true' en producción con HTTPS
+      secure: true, //! cambiar a 'true' en producción con HTTPS
     });
 
     res.status(200).json({ success: true, message: 'Login successful' });
